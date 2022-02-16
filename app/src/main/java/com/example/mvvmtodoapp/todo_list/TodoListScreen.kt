@@ -26,6 +26,8 @@ fun TodoListScreen(
 ) {
     val todo = viewModel.todos.collectAsState(initial = emptyList())
     val scaffoldState = rememberScaffoldState()
+
+    //Called and cancelled whenever the composition is launched and re-launched
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {

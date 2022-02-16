@@ -25,14 +25,14 @@ class TodoListViewModel @Inject constructor(
     // For undo purposes.
     private var deletedTodo: Todo? = null
 
-    // On event from th Ui view on user interaction
+    // On event from the Ui view on user interaction
     fun onEvent(event: TodoListEvent) {
         when (event) {
             is TodoListEvent.OnTodoClick -> {
+
                 sendUiEvent(UiEvent.Navigate(Routes.ADD_EDIT_TODO + "?todo=${event.todo.id}"))
             }
             is TodoListEvent.OnAddTodoClick -> {
-
                 sendUiEvent(UiEvent.Navigate(Routes.ADD_EDIT_TODO))
 
             }
