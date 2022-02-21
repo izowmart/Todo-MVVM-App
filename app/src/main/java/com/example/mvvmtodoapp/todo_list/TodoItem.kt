@@ -44,6 +44,7 @@ fun TodoItem(
                     Icon(imageVector = Icons.Default.Delete, contentDescription ="Delete" )
 
                 }
+
             }
             todo.description?.let {
                 Spacer(modifier = Modifier.height(8.dp))

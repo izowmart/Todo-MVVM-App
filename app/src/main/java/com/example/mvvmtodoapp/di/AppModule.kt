@@ -15,15 +15,15 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Provides
     @Singleton
+    @Provides
     fun provideTodoDatabase(app: Application): TodoDatabase {
         return Room.databaseBuilder(app, TodoDatabase::class.java, "todo_db").build()
     }
 
-    @Provides
     @Singleton
-    fun provideTodoRepository(db:TodoDatabase): TodoRepository{
+    @Provides
+    fun provideTodoRepository(db: TodoDatabase): TodoRepository {
         return TodoRepositoryImpl(db.todoDao)
     }
 }

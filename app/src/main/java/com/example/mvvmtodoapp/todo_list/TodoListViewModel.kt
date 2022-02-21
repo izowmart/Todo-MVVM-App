@@ -29,7 +29,6 @@ class TodoListViewModel @Inject constructor(
     fun onEvent(event: TodoListEvent) {
         when (event) {
             is TodoListEvent.OnTodoClick -> {
-
                 sendUiEvent(UiEvent.Navigate(Routes.ADD_EDIT_TODO + "?todo=${event.todo.id}"))
             }
             is TodoListEvent.OnAddTodoClick -> {
@@ -45,14 +44,6 @@ class TodoListViewModel @Inject constructor(
                     )
                 }
             }
-            is TodoListEvent.OnUndoDeleteClick -> {
-                deletedTodo?.let { todo ->
-                    viewModelScope.launch {
-                        repository.insertTodo(todo)
-                    }
-                }
-
-            }
             is TodoListEvent.OnDeleteTodoClick -> {
                 viewModelScope.launch {
                     deletedTodo = event.todo
@@ -65,6 +56,16 @@ class TodoListViewModel @Inject constructor(
                     )
                 }
             }
+
+            is TodoListEvent.OnUndoDeleteClick -> {
+                deletedTodo?.let { todo ->
+                    viewModelScope.launch {
+                        repository.insertTodo(todo)
+                    }
+                }
+
+            }
+
         }
     }
 
